@@ -5,6 +5,8 @@ import "../style/bootstrap.min.css";
 
 class ListNews extends Component {
   render() {
+    const list_everything = this.props.req_article
+
     console.warn("check props render listNews", this.props)
     return (
         <div className="top-article">
@@ -19,10 +21,12 @@ class ListNews extends Component {
           <div className="row">
             <div className="col-12">
               <ul className="top-article-list list-unstyled">
-                    <li className="top-article-list-map">
-                        <p>#{this.props.keyList}</p>
-                        <a href="#">{this.props.titleList}</a>
-                    </li>
+                {list_everything.map((data,key) => (
+                  <li className="top-article-list-map">
+                    <p>#{(key+1)}</p>
+                    <a href={data.url}>{data.title}</a>
+                 </li>
+                ))}      
               </ul>
             </div>
           </div>
