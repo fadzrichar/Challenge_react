@@ -5,6 +5,12 @@ import "../style/bootstrap.min.css";
 import Search from "./search";
 
 class Header extends Component {
+    postSignout = () => {
+        localStorage.removeItem("login_status");
+        // localStorage.clear()
+        this.props.history.push("/");
+    };
+
 	render() {
 	  return (
 		<div>
@@ -40,16 +46,19 @@ class Header extends Component {
                                 </li>
                             </ul>
                         </div>
-                        <div className="col-4">
+                        <div className="col-3">
                             <Search />
                         </div>
-                        <div className="col-2 justify-content-between">
+                        <div className="col-3 justify-content-between">
                         <ul className="header-nav-bar list-unstyled">
                                 <li>
                                     <Link to="/signin">Masuk</Link>
                                 </li>
                                 <li>
-                                    <Link to="/signin">Daftar</Link>
+                                    <Link to="/profile">Profile</Link>
+                                </li>
+                                <li className="menu">
+                                    <Link onClick={this.postSignout}>SignOut</Link>
                                 </li>
                             </ul>
                         </div>
