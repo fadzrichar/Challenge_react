@@ -18,13 +18,12 @@ class SignIn extends Component {
 			password: password
 		};
 		const self = this;
-		console.log("cek self", self)
 		axios
-			.post("https://login.free.beeceptor.com/login", data)
-			.then(function(response) {
+			.post("https://fadzrilogin.free.beeceptor.com/login", data)
+			.then(async function(response) {
 				console.log(response.data);
 				if (response.data.hasOwnProperty("api_key")) {
-					localStorage.setItem("api_key", response.data.api_key);
+					await localStorage.setItem("api_key", response.data.api_key);
 					localStorage.setItem("login_status", true);
 					localStorage.setItem("firstname", response.data.firstname);
 					localStorage.setItem("lastname", response.data.lastname);
@@ -64,7 +63,6 @@ class SignIn extends Component {
 						/>
 					</div>
 					<button style={{border:"1px solid #ececec", borderRadius:"20%"}} onClick={() => this.postLogin()}>LOGIN</button>
-					{/* <button style={{border:"1px solid #ececec", borderRadius:"20%"}} type="reset">RESET</button> */}
 				</form>
 			</div>
 		</React.Fragment>

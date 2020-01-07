@@ -5,7 +5,12 @@ import "../style/bootstrap.min.css";
 import Search from "./search";
 
 class Header extends Component {
-    postSignout = () => {
+    handleRouterHeader = categoryName => {
+        const category = categoryName;
+        this.props.history.replace("/news-category/" + category);
+    };
+
+    postLogout = () => {
         localStorage.removeItem("login_status");
         // localStorage.clear()
         this.props.history.push("/");
@@ -29,25 +34,54 @@ class Header extends Component {
 						</div>
                         <div className="col-4">
                             <ul className="header-nav-bar list-unstyled">
-                                <li>
-                                    <a href="#">Sepakbola</a>
+                                <li
+                                    className="menu"
+                                    value="sport"
+                                    onClick={
+                                    this.props.isCategoryNews !== undefined
+                                        ? () => this.props.handleRouter("sports")
+                                        : () => this.handleRouterHeader("sports")
+                                    }
+                                >
+                                    Sports
                                 </li>
-                                <li>
-                                    <a href="#">Ekonomi</a>
+                                <li
+                                    className="menu"
+                                    value="business"
+                                    onClick={
+                                    this.props.isCategoryNews !== undefined
+                                        ? () => this.props.handleRouter("business")
+                                        : () => this.handleRouterHeader("business")
+                                    }
+                                >
+                                    Economy
                                 </li>
-                                <li>
-                                    <a href="#">Politik</a>
+                                <li
+                                    className="menu"
+                                    value="politic"
+                                    onClick={
+                                    this.props.isCategoryNews !== undefined
+                                        ? () => this.props.handleRouter("politics")
+                                        : () => this.handleRouterHeader("politics")
+                                    }
+                                >
+                                    Politic
                                 </li>
-                                <li>
-                                    <a href="#">Hiburan</a>
-                                </li>
-                                <li>
-                                    <a href="#">Lainnya</a>
+                                <li
+                                    className="menu"
+                                    value="entertainment"
+                                    onClick={
+                                    this.props.isCategoryNews !== undefined
+                                        ? () => this.props.handleRouter("entertainment")
+                                        : () => this.handleRouterHeader("entertainment")
+                                    }
+                                >
+                                    Entertainment
                                 </li>
                             </ul>
                         </div>
                         <div className="col-3">
-                            <Search />
+                            <Search {...this.props}/>
                         </div>
                         <div className="col-3 justify-content-between">
                         <ul className="header-nav-bar list-unstyled">
@@ -58,7 +92,7 @@ class Header extends Component {
                                     <Link to="/profile">Profile</Link>
                                 </li>
                                 <li className="menu">
-                                    <Link onClick={this.postSignout}>SignOut</Link>
+                                    <Link onClick={this.postLogout}>Logout</Link>
                                 </li>
                             </ul>
                         </div>

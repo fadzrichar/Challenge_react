@@ -12,22 +12,30 @@ const baseUrl = "https://newsapi.org/v2/";
 const urlHeadline = baseUrl + "top-headlines?country=us&pageSize=5&apiKey=" + apiKey;
 const urlEverything = baseUrl + "everything?domains=wsj.com,nytimes.com&apiKey=" + apiKey;
 
-class Home extends Component {
+class NewsCategory extends Component {
 	state = {
 		listTopNews: [],
 		listEverything : [],
 		isLoading: true,
 	};
 
+    handleRouterCategoryNews = async categoryName => {
+        const category = categoryName;
+        await this.props.history.replace("/news-category/" + category);
+        this.everything();
+        this.topArticle();
+    }
+
 	componentDidMount = () => {
 		this.topArticle();
 		this.everything()
 	};
 
-	everything = () => {
+	everything = async () => {
+        const paramCategory = await this.props.match.params.category;
 		const self = this;
-		axios
-		.get(urlEverything)
+		await axios
+		.get(urlEverything + "&q=" + paramCategory)
 		.then(function(response) {
 		  self.setState({ listEverything: response.data.articles, isLoading: false });
 		  // handle success
@@ -61,10 +69,11 @@ class Home extends Component {
 		}
 	};
 
-	topArticle = () => {
+	topArticle = async () => {
+        const paramCategory = this.props.match.params.category;
 		const self = this;
-		axios
-		.get(urlHeadline)
+		await axios
+		.get(urlHeadline + "&category=" + paramCategory)
 		.then(function(response) {
 		  self.setState({ listTopNews: response.data.articles, isLoading: false });
 		  // handle success
@@ -110,8 +119,10 @@ class Home extends Component {
 	return (
 		<div>
 			<Header 
-			doSearch={event => this.handleInputChange(event)}
-			{...this.props}
+            doSearch={event => this.handleInputChange(event)}
+            handleRouter={e => this.handleRouterCategoryNews(e)}
+            isCategoryNews={true}
+			// {...this.props}
 			/>
 			<div className="container" style={{marginTop:"70px"}}>
 				<div className="row ">
@@ -128,4 +139,4 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+export default NewsCategory;
