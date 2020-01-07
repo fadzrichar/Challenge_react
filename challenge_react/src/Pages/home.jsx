@@ -86,26 +86,13 @@ class Home extends Component {
 			return false;
 		})
 
-		const everyNews = topEvery.map((item, key) => {
-			return (
-				<ListNews
-					keyList={key}
-					titleList={item.title}
-					imgList={item.urlToImage}
-					contentList={item.description}
-					urlList={item.url}
-					timeList={item.publishedAt}
-				/>
-			);
-		});
-
 	return (
 		<div>
 			<Header />
 			<div className="container" style={{marginTop:"70px"}}>
 				<div className="row ">
 					<div className="col-5">
-						{isLoading ? <div style={{ textAlign: "center" }}>Loading...</div> : everyNews}
+						<ListNews req_article={topEvery} />
 					</div>
 					<div className="col-7">
 						{isLoading ? <div style={{ textAlign: "center" }}>Loading...</div> : headlineNews}               

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../style/style.css";
 import "../style/bootstrap.min.css";
 import Search from "./search";
@@ -16,7 +17,7 @@ class Header extends Component {
                                     <img src={require("../Image/logoreact.png")} style={{height: "50px"}}alt="logoreact"></img>
                                 </li>
                                 <li>
-                                    <a href="">KabarKabar</a>
+                                    <Link to="/">KabarKabar</Link>
                                 </li>
                             </ul>
 						</div>
@@ -45,10 +46,10 @@ class Header extends Component {
                         <div className="col-2 justify-content-between">
                         <ul className="header-nav-bar list-unstyled">
                                 <li>
-                                    <a href="#">Masuk</a>
+                                    <Link to="/signin">Masuk</Link>
                                 </li>
                                 <li>
-                                    <a href="#">Daftar</a>
+                                    <Link to="/signin">Daftar</Link>
                                 </li>
                             </ul>
                         </div>
