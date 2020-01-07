@@ -12,7 +12,6 @@ class Header extends Component {
 
     postLogout = () => {
         localStorage.removeItem("login_status");
-        // localStorage.clear()
         this.props.history.push("/");
     };
 
@@ -86,13 +85,15 @@ class Header extends Component {
                         <div className="col-3 justify-content-between">
                         <ul className="header-nav-bar list-unstyled">
                                 <li>
-                                    <Link to="/signin">Masuk</Link>
+                                    <Link to="/signin">Login</Link>
                                 </li>
                                 <li>
                                     <Link to="/profile">Profile</Link>
                                 </li>
                                 <li className="menu">
+                                    {localStorage.login_status == null ? <link></link> :
                                     <Link onClick={this.postLogout}>Logout</Link>
+                                    }
                                 </li>
                             </ul>
                         </div>

@@ -6,7 +6,7 @@ import Header from "../Components/header";
 
 class SignIn extends Component {
 	state = { email: "", password: ""};
-	changeInput = e => {
+	updateInput = e => {
 		this.setState({ [e.target.name]: e.target.value});
 		console.warn("check target", e.target.value);
 	};
@@ -50,7 +50,7 @@ class SignIn extends Component {
 							type="text"  
 							name="email" 
 							placeholder="example@alterra.id" 
-							onChange={e => this.changeInput(e)} 
+							onChange={e => this.updateInput(e)} 
 						/>
 					</div>
 					<div>
@@ -59,7 +59,7 @@ class SignIn extends Component {
 							type="password"  
 							name="password" 
 							placeholder="*******" 
-							onChange={e => this.changeInput(e)} 
+							onChange={e => this.updateInput(e)} 
 						/>
 					</div>
 					<button style={{border:"1px solid #ececec", borderRadius:"20%"}} onClick={() => this.postLogin()}>LOGIN</button>

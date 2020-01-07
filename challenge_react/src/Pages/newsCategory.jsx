@@ -122,7 +122,7 @@ class NewsCategory extends Component {
             doSearch={event => this.handleInputChange(event)}
             handleRouter={e => this.handleRouterCategoryNews(e)}
             isCategoryNews={true}
-			// {...this.props}
+			{...this.props}
 			/>
 			<div className="container" style={{marginTop:"70px"}}>
 				<div className="row ">
