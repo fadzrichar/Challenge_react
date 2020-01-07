@@ -21,10 +21,10 @@ class ListNews extends Component {
           <div className="row">
             <div className="col-12">
               <ul className="top-article-list list-unstyled">
-                {list_everything.map((data,key) => (
+                {list_everything.slice(0,5).map((data,key) => (
                   <li className="top-article-list-map">
-                    <p>#{key}</p>
-                    <a href="#">{data.title}</a>
+                    <p>#{(key+1)}</p>
+                    <a href={data.url}>{data.title}</a>
                  </li>
                 ))}      
               </ul>
@@ -34,31 +34,5 @@ class ListNews extends Component {
     );
   }
 }
-
-// const style = {
-//   maxWidth: "180px"
-// };
-
-// const ListNews = props => {
-//   const url = props.url !== null || props.url !== "" ? props.url : "#";
-//   const target = props.url !== null || props.url !== "" ? { target: "_blank" } : "";
-//   return (
-//     <section className="content">
-//       <h3>
-//         <a href={url} {...target}>
-//           {props.title}
-//         </a>
-//       </h3>
-//       <img style={style} src={props.img} alt="img_teaser" className="img_teaser" />
-//       <div className="right">{props.content}</div>
-//     </section>
-//   );
-// };
-
-// ListNews.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   content: PropTypes.string.isRequired,
-//   img: PropTypes.string
-// };
 
 export default ListNews;
