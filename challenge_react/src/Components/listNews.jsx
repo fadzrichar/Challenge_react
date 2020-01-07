@@ -9,7 +9,7 @@ const list_article = [{number:"#1",title:"Liverpool breaking records and opponen
                   {number:"#4",title:"Yamaha's steely supremo return to MotoGP glory"},
                   {number:"#5",title:"Revolutionary 'flying' yachts take Auld Mug into new realm"}]
 
-class TopArticle extends Component {
+class ListNews extends Component {
   render() {
     return (
         <div className="top-article">
@@ -39,4 +39,30 @@ class TopArticle extends Component {
   }
 }
 
-export default TopArticle;
+// const style = {
+//   maxWidth: "180px"
+// };
+
+// const ListNews = props => {
+//   const url = props.url !== null || props.url !== "" ? props.url : "#";
+//   const target = props.url !== null || props.url !== "" ? { target: "_blank" } : "";
+//   return (
+//     <section className="content">
+//       <h3>
+//         <a href={url} {...target}>
+//           {props.title}
+//         </a>
+//       </h3>
+//       <img style={style} src={props.img} alt="img_teaser" className="img_teaser" />
+//       <div className="right">{props.content}</div>
+//     </section>
+//   );
+// };
+
+// ListNews.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   content: PropTypes.string.isRequired,
+//   img: PropTypes.string
+// };
+
+export default ListNews;

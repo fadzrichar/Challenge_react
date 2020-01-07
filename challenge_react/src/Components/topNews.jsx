@@ -2,38 +2,40 @@ import React, { Component } from 'react';
 import "../style/style.css";
 import "../style/bootstrap.min.css";
 
-class ListArticle extends Component {
+class TopNews extends Component {
   render() {
+    const url = this.props.url !== null || this.props.url !== "" ? this.props.url : "#";
+
     return (
     <div className="col-12 list">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <div className="row">
-            <img id="" className="image1" src={require('../Image/curtis_jones_liverpool.jpg')} alt="curtisjoneslfc" />
+            <img id="" className="image1" src={this.props.img} alt="imagenews" />
         </div>
         <div className="row">
             <h3 className="title">
-            Teenager Curtis Jones helps Liverpool beat Everton with sensational goal
+                <a href={url}>{this.props.title}</a>
             </h3><br/>
         </div>
         <div className="row">
             <p className="article">
-            A wonder goal from 18-year-old Curtis Jones helped Liverpool to a 1-0 victory over Merseyside rival Everton in the FA Cup.
+                {this.props.content}
             </p>
         </div>
         <div className="row">
             <p className="published">
-            Last updated 3 mins ago
+            Last updated at {this.props.time}
             </p>
         </div>
         <div className="row feature">
             <div className="col-4">
-                <a href="#"><i class="fa fa-heart"></i></a>
+                <a href="#"><i className="fa fa-heart"></i></a>
             </div>
             <div className="col-4">
-                <a href="#"><i class="fa fa-share-alt"></i></a>
+                <a href="#"><i className="fa fa-share-alt"></i></a>
             </div>
             <div className="col-4">
-                <a href="#"><i class="fa fa-thumbs-down"></i></a>
+                <a href="#"><i className="fa fa-thumbs-down"></i></a>
             </div>
         </div>
     </div>
@@ -42,4 +44,4 @@ class ListArticle extends Component {
   }
 }
 
-export default ListArticle;
+export default TopNews;
