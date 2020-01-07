@@ -21,7 +21,7 @@ class ListNews extends Component {
           <div className="row">
             <div className="col-12">
               <ul className="top-article-list list-unstyled">
-                {list_everything.map((data,key) => (
+                {list_everything.slice(0,5).map((data,key) => (
                   <li className="top-article-list-map">
                     <p>#{(key+1)}</p>
                     <a href={data.url}>{data.title}</a>
