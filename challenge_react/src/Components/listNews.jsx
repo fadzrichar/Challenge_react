@@ -3,14 +3,9 @@ import React, { Component } from 'react';
 import "../style/style.css";
 import "../style/bootstrap.min.css";
 
-const list_article = [{number:"#1",title:"Liverpool breaking records and opponents' resolve"},
-                  {number:"#2",title:"These high-speed ice skaters hit hills and dips at 50 mph"},
-                  {number:"#3",title:"Vandals topple Zlatan Ibrahimovic statue in Sweden"},
-                  {number:"#4",title:"Yamaha's steely supremo return to MotoGP glory"},
-                  {number:"#5",title:"Revolutionary 'flying' yachts take Auld Mug into new realm"}]
-
 class ListNews extends Component {
   render() {
+    console.warn("check props render listNews", this.props)
     return (
         <div className="top-article">
           <div className="row top-article-h">
@@ -24,13 +19,10 @@ class ListNews extends Component {
           <div className="row">
             <div className="col-12">
               <ul className="top-article-list list-unstyled">
-                {list_article.map(data => (
                     <li className="top-article-list-map">
-                        <p>{data.number}</p>
-                        <a href="#">{data.title}</a>
+                        <p>#{this.props.keyList}</p>
+                        <a href="#">{this.props.titleList}</a>
                     </li>
-                  )
-                )}
               </ul>
             </div>
           </div>
