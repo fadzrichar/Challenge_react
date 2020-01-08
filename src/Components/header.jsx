@@ -19,7 +19,7 @@ class Header extends Component {
 	  return (
 		<div>
 			<header className="header border-bottom fixed-top">
-				<div className="container-fluid">
+				<div className="container">
 					<div className="row align-items-center">
 						<div className="col-2 header-logo">
 							<ul className="header-title list-unstyled">
