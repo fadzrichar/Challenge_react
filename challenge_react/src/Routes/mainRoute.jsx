@@ -9,7 +9,6 @@ import NotFound from "../Pages/notFound";
 
 const MainRoute = () => {
 	return (
-		<BrowserRouter>
 			<Switch>
 				<Route exact path="/" component={Home} />
 				<Route exact path="/signin" component={SignIn} />
@@ -17,7 +16,6 @@ const MainRoute = () => {
 				<Route path="/news-category/:category" component={NewsCategory} />
 				<Route component={NotFound} />
 			</Switch>
-		</BrowserRouter>
 	)
 }
 

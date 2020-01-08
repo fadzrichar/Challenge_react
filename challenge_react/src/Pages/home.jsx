@@ -1,58 +1,35 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+// Import STORE RESOURCES
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions, store } from "../store";
+
 // Custom Components
 import Header from "../Components/header";
 import ListNews from "../Components/listNews";
 import TopNews from "../Components/topNews";
 
-// NEWS API
-const apiKey = "293e5a8d202a42f788880487d3bc4c2e";
-const baseUrl = "https://newsapi.org/v2/";
-const urlHeadline = baseUrl + "top-headlines?country=us&pageSize=5&apiKey=" + apiKey;
-const urlEverything = baseUrl + "everything?domains=wsj.com,nytimes.com&apiKey=" + apiKey;
-
 class Home extends Component {
-	state = {
-		listTopNews: [],
-		listEverything : [],
-		isLoading: true,
-	};
-
 	componentDidMount = () => {
-		this.topArticle();
-		this.everything()
+		this.props.topArticle();
+		this.props.everything()
 	};
-
-	everything = () => {
-		const self = this;
-		axios
-		.get(urlEverything)
-		.then(function(response) {
-		  self.setState({ listEverything: response.data.articles, isLoading: false });
-		  // handle success
-		  console.log(response.data);
-		})
-		.catch(function(error) {
-		  self.setState({ isLoading: false });
-		  // handle error
-		  console.log(error);
-		});
-	}
 
 	handleInputChange = async event => {
 		let value = event.target.value;
 		console.warn("value check", value);
-		await this.setState({ search: value });
+		await store.setState({ search: value });
 		this.searchNews(value);
 	};
 
 	searchNews = async keyword => {
-		const self = this;
+		const self = store;
 		if (keyword.length > 3) {
 			try {
 				const response = await axios.get(
-					baseUrl + "everything?q=" + keyword + "&apiKey=" + apiKey
+					this.props.baseUrl + "everything?q=" + keyword + "&apiKey=" + this.props.apiKey
 				);
 				self.setState({ listTopNews: response.data.articles });
 			}	catch (error) {
@@ -61,26 +38,8 @@ class Home extends Component {
 		}
 	};
 
-	topArticle = () => {
-		const self = this;
-		axios
-		.get(urlHeadline)
-		.then(function(response) {
-		  self.setState({ listTopNews: response.data.articles, isLoading: false });
-		  // handle success
-		  console.log(response.data);
-		})
-		.catch(function(error) {
-		  self.setState({ isLoading: false });
-		  // handle error
-		  console.log(error);
-		});
-	}
-
-	render() {
-		const { listTopNews, listEverything, isLoading } = this.state;
-		
-		const topHeadlines = listTopNews.filter(item => {
+	render() {		
+		const topHeadlines = this.props.listTopNews.filter(item => {
 			if (item.content !== null && item.image !== null) {
 				return item;
 			}
@@ -100,7 +59,7 @@ class Home extends Component {
 			);
 		});
 
-		const topEvery = listEverything.filter(item => {
+		const topEvery = this.props.listEverything.filter(item => {
 			if (item.content !== null && item.image !== null) {
 				return item;
 			}
@@ -119,7 +78,7 @@ class Home extends Component {
 						<ListNews req_article={topEvery} />
 					</div>
 					<div className="col-7">
-						{isLoading ? <div style={{ textAlign: "center" }}>Loading...</div> : headlineNews}               
+						{this.props.isLoading ? <div style={{ textAlign: "center" }}>Loading...</div> : headlineNews}               
 					</div>
 				</div>
 			</div>
@@ -128,4 +87,7 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+export default connect(
+	"listTopNews, listEverything, isLoading, apiKey, baseUrl",
+	actions
+)(withRouter(Home));
