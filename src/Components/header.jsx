@@ -42,7 +42,7 @@ class Header extends Component {
                                         : () => this.handleRouterHeader("sports")
                                     }
                                 >
-                                    Sports
+                                    <Link>Sports</Link>
                                 </li>
                                 <li
                                     className="menu"
@@ -53,7 +53,7 @@ class Header extends Component {
                                         : () => this.handleRouterHeader("business")
                                     }
                                 >
-                                    Economy
+                                    <Link>Economy</Link>
                                 </li>
                                 <li
                                     className="menu"
@@ -64,7 +64,7 @@ class Header extends Component {
                                         : () => this.handleRouterHeader("politics")
                                     }
                                 >
-                                    Politic
+                                    <Link>Politic</Link>
                                 </li>
                                 <li
                                     className="menu"
@@ -75,7 +75,7 @@ class Header extends Component {
                                         : () => this.handleRouterHeader("entertainment")
                                     }
                                 >
-                                    Entertainment
+                                    <Link>Entertainment</Link>
                                 </li>
                             </ul>
                         </div>

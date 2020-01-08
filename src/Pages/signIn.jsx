@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+// Import STORE RESOURCES
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store";
+
 // Custom Components
 import Header from "../Components/header";
 
 class SignIn extends Component {
-	state = { email: "", password: ""};
 	updateInput = e => {
 		this.setState({ [e.target.name]: e.target.value});
 		console.warn("check target", e.target.value);
 	};
 
 	postLogin = () => {
-		const {email, password} = this.state;
 		const data = {
-			email: email,
-			password: password
+			email: this.props.email,
+			password: this.props.password
 		};
 		const self = this;
 		axios
@@ -70,4 +73,7 @@ class SignIn extends Component {
 	}
 }
 
-export default SignIn;
+export default connect(
+	"email, password",
+	actions
+)(withRouter(SignIn));
