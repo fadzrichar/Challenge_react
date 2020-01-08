@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 // Import STORE RESOURCES
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
-import { actions, store } from "../store";
+import { actions } from "../store";
 
 // Custom Components
 import Header from "../Components/header";
@@ -15,27 +14,6 @@ class Home extends Component {
 	componentDidMount = () => {
 		this.props.topArticle();
 		this.props.everything()
-	};
-
-	handleInputChange = async event => {
-		let value = event.target.value;
-		console.warn("value check", value);
-		await store.setState({ search: value });
-		this.searchNews(value);
-	};
-
-	searchNews = async keyword => {
-		const self = store;
-		if (keyword.length > 3) {
-			try {
-				const response = await axios.get(
-					this.props.baseUrl + "everything?q=" + keyword + "&apiKey=" + this.props.apiKey
-				);
-				self.setState({ listTopNews: response.data.articles });
-			}	catch (error) {
-				console.error(error);
-			}
-		}
 	};
 
 	render() {		
@@ -69,7 +47,7 @@ class Home extends Component {
 	return (
 		<div>
 			<Header 
-			doSearch={event => this.handleInputChange(event)}
+			doSearch={event => this.props.handleInputChange(event)}
 			{...this.props}
 			/>
 			<div className="container" style={{marginTop:"70px"}}>

@@ -9,8 +9,8 @@ class TopNews extends Component {
     return (
     <div className="col-12 list">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <div className="row">
-            <img id="" className="image1" src={this.props.img} alt="imagenews" />
+        <div className="row image1">
+            <img src={this.props.img} style={{maxWidth:"100%"}} alt="imagenews" />
         </div>
         <div className="row">
             <h3 className="title">
